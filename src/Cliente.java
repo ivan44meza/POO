@@ -21,7 +21,7 @@ public class Cliente {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.fechaNacimiento = LocalDate.parse(fechaNacimiento, formato);
         this.montoApertura = montoApertura;
-        this.cuentaAsociada = new Cuenta(this.cedula, montoApertura,1);
+        this.cuentaAsociada = cuentaAsociada;
     }
 
     // Getters
@@ -44,6 +44,10 @@ public class Cliente {
 
     public double getMontoApertura(){
         return montoApertura;
+    }
+
+    public Cuenta getCuentaAsociada (){
+        return cuentaAsociada;
     }
 
     //Setters
@@ -77,6 +81,10 @@ public class Cliente {
         }
     }
 
+    public void setCuentaAsociada(int cedula, double montoApertura){
+        this.cuentaAsociada = new Cuenta(cedula, montoApertura, 1);
+    }
+
     // metodo de apertura de cuenta
     public void apertura(){
         Scanner sc = new Scanner(System.in);
@@ -95,16 +103,16 @@ public class Cliente {
         setFechaNacimiento(LocalDate.parse(sc.nextLine(), formato));
 
         System.out.println("Ingrese el monto inicial (debe ser mayor a 100.000 pesos)");
-        setMontoApertura(Integer.parseInt(sc.nextLine()));
+        setMontoApertura(Integer.parseInt(sc.nextLine())+1000000);
 
-        sc.close();
+        setCuentaAsociada(this.cedula, this.montoApertura);
     }
 
-    public void mostrarDatos(){
+    public void mostrarDatosCliente(){
         System.out.println("El nombre es: "+nombre);
         System.out.println("La edad es: "+edad);
         System.out.println("La cedula es: "+cedula);
         System.out.println("La fecha de nacimeinto es: "+fechaNacimiento);
-        cuentaAsociada.mostrarDatos();
+        cuentaAsociada.mostrarDatosCuenta();
     }
 }

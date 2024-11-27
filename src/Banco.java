@@ -25,6 +25,44 @@ public class Banco {
         
         System.out.println("Bienvenido al banco Banchocombia\nPor favor cree su cuenta");
         usuario.apertura();
-        usuario.mostrarDatos();
+        usuario.mostrarDatosCliente();
+
+        // Opciones para el Usuario
+        Cuenta cuentaUsuario = usuario.getCuentaAsociada();
+
+        System.out.println("Seleccione una opcion para continuar");
+        System.out.println("1. Consignar");
+        System.out.println("2. Retirar");
+        System.out.println("3. Transferir");
+        System.out.println("4. Consultar");
+
+        opcion = Integer.parseInt(sc.nextLine());
+
+        switch (opcion) {
+            case 1:
+                cuentaUsuario.consignacion();
+                cuentaUsuario.mostrarMontoModificado();
+                break;
+
+            case 2:
+                cuentaUsuario.retiro();
+                cuentaUsuario.mostrarMontoModificado();
+                break;
+
+            case 3:
+                cuentaUsuario.transferir();
+                cuentaUsuario.mostrarMontoModificado();
+                break;
+
+            case 4:
+                cuentaUsuario.mostrarDatosCuenta();
+                break;
+        
+            default:
+                System.out.println("Porfavor escoja una de las opciones anteriores");
+                break;
+        }
+
+        sc.close();
     }
 }
