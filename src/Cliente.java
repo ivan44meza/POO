@@ -11,6 +11,7 @@ public class Cliente {
     private double montoApertura;
     private Cuenta cuentaAsociada;
 
+    // Vacio para que me deje crear llenar el constructor desde la misma clase
     public Cliente(){}
 
     public Cliente(String nombre, int edad, int cedula, String fechaNacimiento, double montoApertura, Cuenta cuentaAsociada){
